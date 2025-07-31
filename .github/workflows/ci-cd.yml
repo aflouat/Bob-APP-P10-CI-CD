@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot v0.5
+name: CI/CD Angular & Spring Boot v0.6
 
 on:
   push:
@@ -26,6 +26,12 @@ jobs:
         run: |
           cd back
           ./mvnw clean verify
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: back/target/site/jacoco
+
       # Frontend build & test
       - name: Setup Node.js
         uses: actions/setup-node@v3
