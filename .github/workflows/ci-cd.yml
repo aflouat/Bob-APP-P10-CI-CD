@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot v0.7
+name: CI/CD Angular & Spring Boot v0.8
 
 on:
   push:
@@ -46,9 +46,9 @@ jobs:
       - name: Upload Angular coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
-          files: front/coverage/bobapp/lcov.info
-          flags: angular
-          name: angular-coverage
+            files: front/coverage/bobapp/lcov.info
+            flags: angular
+            name: angular-coverage
         
       - name: Upload frontend coverage report
         uses: actions/upload-artifact@v4
