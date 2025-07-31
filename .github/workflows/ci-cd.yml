@@ -24,5 +24,5 @@ jobs:
           java-version: '11'
       - name: Build & test Spring Boot
         run: |
-          cd back
+          cd backend
           ./mvnw clean verify
