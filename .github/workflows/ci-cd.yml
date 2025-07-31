@@ -11,8 +11,18 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+
+      - name: Build the Docker image for the backend
+        uses: actions/checkout@v4
+        # Backend build & test
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: '11'
+      - name: Build & test Spring Boot
+        run: |
+          cd back
+          ./mvnw clean verify
