@@ -1,3 +1,7 @@
+#code coverage
+
+[![codecov](https://codecov.io/gh/aflouat/Bob-APP-P10-CI-CD/branch/main/graph/badge.svg)](https://codecov.io/gh/aflouat/Bob-APP-P10-CI-CD)
+
 # BobApp
 
 Clone project:
