@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot
+name: CI/CD Angular & Spring Boot v0.4
 
 on:
   push:
@@ -26,3 +26,14 @@ jobs:
         run: |
           cd back
           ./mvnw clean verify
+      # Frontend build & test
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+            node-version: '18'
+      - name: Install & build Angular
+        run: |
+            cd front
+            npm ci
+            npm run build
+            npm test -- --watch=false
