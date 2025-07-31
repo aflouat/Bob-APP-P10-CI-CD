@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot v0.6
+name: CI/CD Angular & Spring Boot v0.7
 
 on:
   push:
@@ -42,4 +42,10 @@ jobs:
             cd front
             npm ci
             npm run build
-            npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+            npm run test -- --code-coverage --watch=false --browsers=ChromeHeadlessCI
+
+      - name: Upload frontend coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: angular-coverage
+          path: front/coverage/bobapp
