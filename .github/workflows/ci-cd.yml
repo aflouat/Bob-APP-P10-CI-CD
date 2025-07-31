@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot v0.8
+name: CI/CD Angular & Spring Boot v0.9
 
 on:
   push:
@@ -22,36 +22,37 @@ jobs:
         with:
           distribution: temurin
           java-version: '11'
+      # Backend
       - name: Build & test Spring Boot
         run: |
           cd back
           ./mvnw clean verify
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: jacoco-report
-          path: back/target/site/jacoco
 
-      # Frontend build & test
+      - name: Upload backend (Jacoco) coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: back/target/site/jacoco/jacoco.xml
+          flags: backend
+          name: backend-coverage
+
+      # Frontend
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-            node-version: '18'
+          node-version: '18'
       - name: Install & build Angular
         run: |
-            cd front
-            npm ci
-            npm run build
-            npm run test -- --code-coverage --watch=false --browsers=ChromeHeadlessCI
-      - name: Upload Angular coverage to Codecov
+          cd front
+          npm ci
+          npm run build
+          npm run test -- --code-coverage --watch=false --browsers=ChromeHeadlessCI
+
+      - name: Upload frontend (Angular) coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
-            files: front/coverage/bobapp/lcov.info
-            flags: angular
-            name: angular-coverage
-        
-      - name: Upload frontend coverage report
-        uses: actions/upload-artifact@v4
-        with:
+          files: front/coverage/bobapp/lcov.info
+          flags: frontend
           name: angular-coverage
-          path: front/coverage/bobapp
+
+
+
