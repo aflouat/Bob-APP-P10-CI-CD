@@ -41,9 +41,17 @@ jobs:
         run: |
             cd front
             npm ci
+            npx jest --coverage
+
             npm run build
             npm run test -- --code-coverage --watch=false --browsers=ChromeHeadlessCI
-
+      - name: Upload Angular coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: front/coverage/bobapp/lcov.info
+          flags: angular
+          name: angular-coverage
+        
       - name: Upload frontend coverage report
         uses: actions/upload-artifact@v4
         with:
