@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot v0.4
+name: CI/CD Angular & Spring Boot v0.5
 
 on:
   push:
@@ -36,4 +36,4 @@ jobs:
             cd front
             npm ci
             npm run build
-            npm test -- --watch=false
+            npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
