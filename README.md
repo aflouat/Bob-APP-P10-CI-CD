@@ -2,7 +2,7 @@
 
 Clone project:
 
-> git clone XXXXX
+> git clone https://github.com/aflouat/Bob-APP-P10-CI-CD.git
 
 ## Front-end 
 
