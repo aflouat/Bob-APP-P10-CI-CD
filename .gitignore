@@ -38,3 +38,6 @@ front/package-lock.json
 
 
 .angular
+# Ignore test reports
+/front/reports
+/back/reports
