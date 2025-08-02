@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot v0.91
+name: CI/CD Angular & Spring Boot v0.911
 
 on:
   push:
