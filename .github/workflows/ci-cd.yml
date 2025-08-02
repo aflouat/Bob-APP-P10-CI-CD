@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot v0.911
+name: CI/CD Angular & Spring Boot v0.92
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
       # Test report
       - name: Test Report for backend
         uses: phoenix-actions/test-reporting@v8
-        id: test-report               # Set ID reference for step
+        id: test-report-backend               # Set ID reference for step
         if: success() || failure()    # run this step even if previous step failed
         with:
           name: JEST Tests            # Name of the check run which will be created
@@ -57,7 +57,7 @@ jobs:
 
       - name: Test Report for frontend
         uses: phoenix-actions/test-reporting@v8
-        id: test-report               # Set ID reference for step
+        id: test-report-frontend               # Set ID reference for step
         if: success() || failure()    # run this step even if previous step failed
         with:
             name: JEST Tests            # Name of the check run which will be created
