@@ -27,25 +27,15 @@ jobs:
         run: |
           cd back
           ./mvnw clean verify
-
-      - name: Upload backend (Jacoco) coverage to Codecov
-        uses: codecov/codecov-action@v4
+      # Test report
+      - name: Test Report
+        uses: phoenix-actions/test-reporting@v8
+        id: test-report               # Set ID reference for step
+        if: success() || failure()    # run this step even if previous step failed
         with:
-          files: back/target/site/jacoco/jacoco.xml
-          flags: backend
-          name: backend-coverage
-      - name: Move backend coverage to GitHub Pages dir
-        run: |
-          mkdir -p coverage/backend
-          cp -r back/target/site/jacoco/* coverage/backend/
-      - name: Upload backend coverage to GitHub Pages (main branch)
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./coverage/backend
-          destination_dir: coverage/backend
-          keep_files: true
-          publish_branch: gh-pages
+          name: JEST Tests            # Name of the check run which will be created
+          path: reports/jest-*.xml    # Path to test results
+          reporter: jest-junit        # Format of test results
 
       # Frontend
       - name: Setup Node.js
@@ -59,24 +49,13 @@ jobs:
           npm run build
           npm run test -- --code-coverage --watch=false --browsers=ChromeHeadlessCI
 
-      - name: Upload frontend (Angular) coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          files: front/coverage/bobapp/lcov.info
-          flags: frontend
-          name: angular-coverage
-      - name: Move frontend coverage to GitHub Pages dir
-        run: |
-          mkdir -p coverage/frontend
-          cp -r front/coverage/bobapp/* coverage/frontend/
-      - name: Upload frontend coverage to GitHub Pages (main branch)
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./coverage/frontend
-          destination_dir: coverage/frontend
-          keep_files: true
-          publish_branch: gh-pages
-
+      - name: Test Report
+          uses: phoenix-actions/test-reporting@v8
+          id: test-report               # Set ID reference for step
+          if: success() || failure()    # run this step even if previous step failed
+          with:
+            name: JEST Tests            # Name of the check run which will be created
+            path: reports/jest-*.xml    # Path to test results
+            reporter: jest-junit        # Format of test results
 
 

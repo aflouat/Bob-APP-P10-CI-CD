@@ -10,6 +10,8 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
+      require('karma-junit-reporter'),
+
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -32,7 +34,12 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
-    reporters: ['progress', 'kjhtml','coverage'],
+    reporters: ['progress', 'kjhtml','coverage','junit'],
+    junitReporter: {
+      outputDir: 'reports',      // chemin utilisé par phoenix-actions/test-reporting
+      outputFile: 'jest-unit.xml', // correspond à path: reports/jest-*.xml
+      useBrowserName: false
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
