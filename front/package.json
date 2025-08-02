@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCI --reporters=junit"
   },
   "private": true,
   "dependencies": {
@@ -38,5 +39,9 @@
     "karma-jasmine-html-reporter": "2.0.0",
     "karma-junit-reporter": "^2.0.1",
     "typescript": "4.8.2"
+  },
+  "jest-junit": {
+    "outputDirectory": "reports",
+    "outputName": "jest-results.xml"
   }
 }
