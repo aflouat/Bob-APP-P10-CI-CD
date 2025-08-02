@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot v0.9
+name: CI/CD Angular & Spring Boot v0.91
 
 on:
   push:
@@ -34,6 +34,18 @@ jobs:
           files: back/target/site/jacoco/jacoco.xml
           flags: backend
           name: backend-coverage
+      - name: Move backend coverage to GitHub Pages dir
+        run: |
+          mkdir -p coverage/backend
+          cp -r back/target/site/jacoco/* coverage/backend/
+      - name: Upload backend coverage to GitHub Pages (main branch)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./coverage/backend
+          destination_dir: coverage/backend
+          keep_files: true
+          publish_branch: gh-pages
 
       # Frontend
       - name: Setup Node.js
@@ -53,6 +65,18 @@ jobs:
           files: front/coverage/bobapp/lcov.info
           flags: frontend
           name: angular-coverage
+      - name: Move frontend coverage to GitHub Pages dir
+        run: |
+          mkdir -p coverage/frontend
+          cp -r front/coverage/bobapp/* coverage/frontend/
+      - name: Upload frontend coverage to GitHub Pages (main branch)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./coverage/frontend
+          destination_dir: coverage/frontend
+          keep_files: true
+          publish_branch: main
 
 
 

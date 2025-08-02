@@ -58,9 +58,7 @@
 						<goals>
 							<goal>report</goal>
 						</goals>
-						<configuration>
-							<outputDirectory>${project.basedir}/reports/backend</outputDirectory>
-						</configuration>
+
 					</execution>
 				</executions>
 			</plugin>
