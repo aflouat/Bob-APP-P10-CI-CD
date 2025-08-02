@@ -28,7 +28,7 @@ jobs:
           cd back
           ./mvnw clean verify
       # Test report
-      - name: Test Report
+      - name: Test Report for backend
         uses: phoenix-actions/test-reporting@v8
         id: test-report               # Set ID reference for step
         if: success() || failure()    # run this step even if previous step failed
@@ -36,6 +36,12 @@ jobs:
           name: JEST Tests            # Name of the check run which will be created
           path: reports/jest-*.xml    # Path to test results
           reporter: jest-junit        # Format of test results
+      - name: SonarQube Scan - Backend
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: back
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       # Frontend
       - name: Setup Node.js
@@ -49,13 +55,19 @@ jobs:
           npm run build
           npm run test -- --code-coverage --watch=false --browsers=ChromeHeadlessCI
 
-      - name: Test Report
-          uses: phoenix-actions/test-reporting@v8
-          id: test-report               # Set ID reference for step
-          if: success() || failure()    # run this step even if previous step failed
-          with:
+      - name: Test Report for frontend
+        uses: phoenix-actions/test-reporting@v8
+        id: test-report               # Set ID reference for step
+        if: success() || failure()    # run this step even if previous step failed
+        with:
             name: JEST Tests            # Name of the check run which will be created
             path: reports/jest-*.xml    # Path to test results
             reporter: jest-junit        # Format of test results
+      - name: SonarQube Scan - Frontend
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: front
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
