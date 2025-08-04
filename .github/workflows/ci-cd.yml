@@ -26,15 +26,7 @@ jobs:
         run: |
           cd back
           ./mvnw clean verify
-      # Test report
-      - name: Test Report for backend
-        uses: phoenix-actions/test-reporting@v8
-        id: test-report-backend               # Set ID reference for step
-        if: success() || failure()    # run this step even if previous step failed
-        with:
-          name: JEST Tests            # Name of the check run which will be created
-          path: back/reports/*.xml    # Path to test results
-          reporter: jest-junit        # Format of test results
+
       - name: SonarQube Scan - Backend
         uses: SonarSource/sonarcloud-github-action@master
         with:
@@ -54,15 +46,6 @@ jobs:
           npm run build
           npm run test:ci
 
-
-      - name: Test Report for frontend
-        uses: phoenix-actions/test-reporting@v8
-        id: test-report-frontend               # Set ID reference for step
-        if: success() || failure()    # run this step even if previous step failed
-        with:
-            name: JEST Tests            # Name of the check run which will be created
-            path: front/reports/jest-results.xml    # Path to test results
-            reporter: jest-junit        # Format of test results
       - name: SonarQube Scan - Frontend
         uses: SonarSource/sonarcloud-github-action@master
         with:
