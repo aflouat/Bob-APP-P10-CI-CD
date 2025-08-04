@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot v0.923
+name: CI/CD Angular & Spring Boot for Bob APP v0.923
 
 on:
   push:
@@ -22,7 +22,6 @@ jobs:
         with:
           distribution: temurin
           java-version: '11'
-      # Backend
       - name: Build & test Spring Boot
         run: |
           cd back
@@ -34,7 +33,7 @@ jobs:
         if: success() || failure()    # run this step even if previous step failed
         with:
           name: JEST Tests            # Name of the check run which will be created
-          path: back/target/surefire-reports/*.xml    # Path to test results
+          path: back/reports/*.xml    # Path to test results
           reporter: jest-junit        # Format of test results
       - name: SonarQube Scan - Backend
         uses: SonarSource/sonarcloud-github-action@master
