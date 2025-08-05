@@ -30,11 +30,8 @@ jobs:
       - name: SonarQube Scan - Backend
         run: |
           cd back
-          ./mvnw verify sonar:sonar \
-            -Dsonar.projectKey=aflouat_Bob-APP-P10-CI-CD \
-            -Dsonar.organization=aflouat \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          ./mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar
+
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 

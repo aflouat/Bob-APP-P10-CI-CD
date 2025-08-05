@@ -15,6 +15,9 @@
 	<description>L'application de joke par excellence !</description>
 	<properties>
 		<java.version>11</java.version>
+		<sonar.projectKey>aflouat_Bob-APP-P10-CI-CD</sonar.projectKey>
+		<sonar.organization>aflouat</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -61,6 +64,11 @@
 
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.11.0.3922</version>
 			</plugin>
 		</plugins>
 	</build>
