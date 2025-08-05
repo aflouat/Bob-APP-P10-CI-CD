@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.1</version>
+		<version>2.7.18</version>
 		<relativePath/>
 	</parent>
 	<groupId>com.openclassrooms</groupId>
@@ -14,7 +14,7 @@
 	<name>bobapp</name>
 	<description>L'application de joke par excellence !</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<sonar.projectKey>aflouat_Bob-APP-P10-CI-CD</sonar.projectKey>
 		<sonar.organization>aflouat</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>

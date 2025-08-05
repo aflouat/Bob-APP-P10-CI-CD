@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot for Bob APP v0.923
+name: CI/CD Angular & Spring Boot for Bob APP v0.93
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: '11'
+          java-version: '17'
       - name: Build & test Spring Boot
         run: |
           cd back
