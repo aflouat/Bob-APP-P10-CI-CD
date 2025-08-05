@@ -28,9 +28,13 @@ jobs:
           ./mvnw clean verify
 
       - name: SonarQube Scan - Backend
-        uses: SonarSource/sonarcloud-github-action@master
-        with:
-          projectBaseDir: back
+        run: |
+          cd back
+          ./mvnw verify sonar:sonar \
+            -Dsonar.projectKey=aflouat_Bob-APP-P10-CI-CD \
+            -Dsonar.organization=aflouat \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
