@@ -30,7 +30,7 @@ jobs:
       - name: SonarQube Scan - Backend
         run: |
           cd back
-          ./mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar
+          ./mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar
 
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
