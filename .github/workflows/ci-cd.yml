@@ -30,7 +30,7 @@ jobs:
       - name: SonarQube Scan - Backend
         run: |
           cd back
-          ./mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar
+          ./mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar
 
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -51,6 +51,15 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@master
         with:
           projectBaseDir: front
+          args: >
+            -Dsonar.projectKey=aflouat_Bob-APP-P10-CI-CD
+            -Dsonar.organization=aflouat
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.sources=src
+            -Dsonar.exclusions=node_modules/**,dist/**
+            -Dsonar.tests=src
+            -Dsonar.test.inclusions=**/*.spec.ts
+            -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
