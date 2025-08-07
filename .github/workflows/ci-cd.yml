@@ -26,6 +26,13 @@ jobs:
         run: |
           cd back
           ./mvnw clean verify
+      - name: Test Reporting
+        uses: phoenix-actions/test-reporting@v15
+        if: always()  # Run this step even if previous steps fail
+        with:
+          name: backend tests
+          path: back/target/surefire-reports/*.xml
+          reporter: java-junit
 
       - name: SonarQube Scan - Backend
         run: |
