@@ -36,16 +36,16 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Build Docker image
         run: |
-          docker build -t aflouat/bobapp:latest -f back/Dockerfile back
+          docker build -t aflouat/bobapp-back:latest -f back/Dockerfile back
 
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Push Docker image to Docker Hub
         run: |
-          docker tag aflouat/bobapp:latest aflouat/bobapp:${{ github.sha }}
-          docker push aflouat/bobapp:${{ github.sha }}
-          docker push aflouat/bobapp:latest
+          docker tag aflouat/bobapp-back:latest aflouat/bobapp-back:${{ github.sha }}
+          docker push aflouat/bobapp-back:${{ github.sha }}
+          docker push aflouat/bobapp-back:latest
       # Frontend
       - name: Setup Node.js
         uses: actions/setup-node@v3
