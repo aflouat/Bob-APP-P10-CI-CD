@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot for Bob APP v0.95
+name: CI/CD Angular & Spring Boot for Bob APP v0.95.0
 
 on:
   push:
