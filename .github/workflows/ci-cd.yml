@@ -26,13 +26,13 @@ jobs:
         run: |
           cd back
           ./mvnw clean verify
-      - name: Test Reporting
-        uses: phoenix-actions/test-reporting@v15
-        if: always()  # Run this step even if previous steps fail
+      # publish code coverage to GITHUB with artifact
+      - name: Upload code coverage to GitHub
+        uses: actions/upload-artifact@v4
         with:
-          name: backend tests
-          path: back/target/surefire-reports/*.xml
-          reporter: java-junit
+            name: code-coverage
+            path: back/target/site/jacoco/jacoco.xml
+
 
       - name: SonarQube Scan - Backend
         run: |
@@ -64,6 +64,12 @@ jobs:
           npm ci
           npm run build
           npm run test:ci
+        # publish code coverage to GITHUB with artifact
+      - name: Upload code coverage to GitHub - Frontend
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-front
+          path: front/coverage/lcov.info
 
       - name: SonarQube Scan - Frontend
         uses: SonarSource/sonarcloud-github-action@master
