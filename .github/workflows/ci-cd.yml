@@ -69,7 +69,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: code-coverage-front
-          path: front/coverage/lcov.info
+          path: front/coverage/bobapp/lcov.info
 
       - name: SonarQube Scan - Frontend
         uses: SonarSource/sonarcloud-github-action@master
