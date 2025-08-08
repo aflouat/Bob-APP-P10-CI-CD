@@ -71,7 +71,7 @@ jobs:
           projectBaseDir: front
           args: >
             -Dsonar.projectKey=front_Bob-APP-P10-CI-CD
-            -Dsonar.organization=aflouat
+            -Dsonar.organization=Aflouat
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.sources=src
             -Dsonar.exclusions=node_modules/**,dist/**
