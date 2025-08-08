@@ -83,7 +83,7 @@ jobs:
             -Dsonar.exclusions=node_modules/**,dist/**
             -Dsonar.tests=src
             -Dsonar.test.inclusions=**/*.spec.ts
-            -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.typescript.lcov.reportPaths=front/coverage/bobapp/lcov.info
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
