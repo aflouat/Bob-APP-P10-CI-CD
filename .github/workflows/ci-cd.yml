@@ -30,8 +30,8 @@ jobs:
       - name: Upload code coverage to GitHub
         uses: actions/upload-artifact@v4
         with:
-            name: code-coverage
-            path: back/target/site/jacoco/jacoco.xml
+            name: code-coverage-back
+            path: back/target/site/jacoco/
 
 
       - name: SonarQube Scan - Backend
@@ -69,7 +69,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: code-coverage-front
-          path: front/coverage/bobapp/lcov.info
+          path: front/coverage/bobapp/
 
       - name: SonarQube Scan - Frontend
         uses: SonarSource/sonarcloud-github-action@master
