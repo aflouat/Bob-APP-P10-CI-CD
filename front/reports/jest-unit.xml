@@ -1,12 +1,14 @@
 <?xml version="1.0"?>
-<testsuite name="Chrome Headless 138.0.0.0 (Windows 10)" package="" timestamp="2025-08-08T17:17:48" id="0" hostname="TC-PRO" tests="2" errors="0" failures="0" time="0.116">
+<testsuite name="Chrome Headless 138.0.0.0 (Windows 10)" package="" timestamp="2025-08-09T05:22:59" id="0" hostname="TC-PRO" tests="2" errors="0" failures="0" time="0.073">
   <properties>
     <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/138.0.0.0 Safari/537.36"/>
   </properties>
-  <testcase name="AppComponent should create the app" time="0.113" classname="AppComponent"/>
-  <testcase name="JokesService should be created" time="0.003" classname="JokesService"/>
+  <testcase name="AppComponent should create the app" time="0.068" classname="AppComponent"/>
+  <testcase name="JokesService should be created" time="0.005" classname="JokesService"/>
   <system-out>
-    <![CDATA[Chrome Headless 138.0.0.0 (Windows 10) ERROR: 'NG0304: 'mat-toolbar' is not a known element (used in the 'AppComponent' component template):
+    <![CDATA[Chrome Headless 138.0.0.0 (Windows 10) ERROR
+  Disconnected Client disconnected from CONNECTED state (transport close)
+,Chrome Headless 138.0.0.0 (Windows 10) ERROR: 'NG0304: 'mat-toolbar' is not a known element (used in the 'AppComponent' component template):
 1. If 'mat-toolbar' is an Angular component, then verify that it is a part of an @NgModule where this component is declared.
 2. If 'mat-toolbar' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.'
 ,Chrome Headless 138.0.0.0 (Windows 10) ERROR: 'NG0304: 'mat-card' is not a known element (used in the 'AppComponent' component template):

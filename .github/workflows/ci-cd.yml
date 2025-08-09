@@ -86,5 +86,14 @@ jobs:
             -Dsonar.typescript.lcov.reportPaths=front/coverage/bobapp/lcov.info
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
+      - name: Build front Docker image
+        run: |
+            docker build -t aflouat/bobapp-front:latest -f front/Dockerfile front
+    
+        
+          - name: Push Docker image to Docker Hub
+            run: |
+              docker tag aflouat/bobapp-front:latest aflouat/bobapp-front:${{ github.sha }}
+              docker push aflouat/bobapp-front:${{ github.sha }}
+              docker push aflouat/bobapp-front:latest
 
