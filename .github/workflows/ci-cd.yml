@@ -1,4 +1,4 @@
-name: CI/CD Angular & Spring Boot for Bob APP v0.95.1
+name: CI/CD Angular & Spring Boot for Bob APP v0.96.1
 
 on:
   push:
@@ -89,8 +89,6 @@ jobs:
       - name: Build front Docker image
         run: |
             docker build -t aflouat/bobapp-front:latest -f front/Dockerfile front
-    
-
       - name: Push Docker image to Docker Hub
         run: |
           docker tag aflouat/bobapp-front:latest aflouat/bobapp-front:${{ github.sha }}
