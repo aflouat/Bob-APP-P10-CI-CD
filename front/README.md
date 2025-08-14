@@ -25,6 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## clean as you code
 https://www.sonarsource.com/solutions/our-unique-approach/ 
 
+## continuous integration with github actions
+This project is set up with GitHub Actions for continuous integration. The workflow is defined in `.github/workflows/ci.yml`.
+It runs on every push and pull request to the `main`
+
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
