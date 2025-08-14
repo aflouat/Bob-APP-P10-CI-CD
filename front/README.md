@@ -27,7 +27,7 @@ https://www.sonarsource.com/solutions/our-unique-approach/
 
 ## continuous integration with github actions
 This project is set up with GitHub Actions for continuous integration. The workflow is defined in `.github/workflows/ci.yml`.
-It runs on every push and pull request to the `main`
+It runs on every push and pull request to the `main`.
 
 
 ## Further help

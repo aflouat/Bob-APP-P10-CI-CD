@@ -24,7 +24,7 @@ jobs:
           node-version: '18'
       - name: Install & build Angular
         run: |
-          cd front
+          
           npm ci
           npm run build
           npm run test:ci
