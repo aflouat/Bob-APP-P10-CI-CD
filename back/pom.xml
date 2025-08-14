@@ -12,7 +12,7 @@
 	<artifactId>bobapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bobapp</name>
-	<description>L'application de joke par excellence !</description>
+	<description>L'application de joke par excellence ! </description>
 	<properties>
 		<java.version>17</java.version>
 		<sonar.projectKey>com.openclassrooms:bobapp</sonar.projectKey>
