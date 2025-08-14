@@ -1,10 +1,15 @@
-name: CI/CD Angular & Spring Boot for Bob APP v0.96.1
+name: CI/CD frontend
+
 
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'front/**'
   pull_request:
     branches: [ "main" ]
+    paths:
+    - 'front/**'
 
 jobs:
 
@@ -12,47 +17,6 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-
-
-      - name: clone the source code for the backend
-        uses: actions/checkout@v4
-        # Backend build & test
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: '17'
-      - name: Build & test Spring Boot
-        run: |
-          cd back
-          ./mvnw clean verify
-      # publish code coverage to GITHUB with artifact
-      - name: Upload code coverage to GitHub
-        uses: actions/upload-artifact@v4
-        with:
-            name: code-coverage-back
-            path: back/target/site/jacoco/
-
-
-      - name: SonarQube Scan - Backend
-        run: |
-          cd back
-          ./mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar
-
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: Build Docker image
-        run: |
-          docker build -t aflouat/bobapp-back:latest -f back/Dockerfile back
-
-      - name: Login to Docker Hub
-        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-
-      - name: Push Docker image to Docker Hub
-        run: |
-          docker tag aflouat/bobapp-back:latest aflouat/bobapp-back:${{ github.sha }}
-          docker push aflouat/bobapp-back:${{ github.sha }}
-          docker push aflouat/bobapp-back:latest
       # Frontend
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -86,9 +50,13 @@ jobs:
             -Dsonar.typescript.lcov.reportPaths=front/coverage/bobapp/lcov.info
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
       - name: Build front Docker image
         run: |
             docker build -t aflouat/bobapp-front:latest -f front/Dockerfile front
+
       - name: Push Docker image to Docker Hub
         run: |
           docker tag aflouat/bobapp-front:latest aflouat/bobapp-front:${{ github.sha }}
