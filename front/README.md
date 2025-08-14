@@ -28,7 +28,9 @@ https://www.sonarsource.com/solutions/our-unique-approach/
 ## continuous integration with github actions
 This project is set up with GitHub Actions for continuous integration. The workflow is defined in `.github/workflows/ci.yml`.
 It runs on every push and pull request to the `main`.
-
+## Code quality checks
+The project uses SonarQube for code quality checks. The configuration is defined in the `sonar-project.properties` file.
+To run the SonarQube analysis, you need to have SonarQube server running and the `sonar-scanner` installed. 
 
 ## Further help
 

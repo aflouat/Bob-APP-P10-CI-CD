@@ -17,14 +17,15 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      # Frontend
+      - name: clone the source code for the backend
+        uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
       - name: Install & build Angular
         run: |
-          
+          cd front          
           npm ci
           npm run build
           npm run test:ci
